@@ -1,0 +1,112 @@
+
+<div [hidden]="submitted">
+  <form class="form-inline" (ngSubmit)="onSubmit()" #IMMForm="ngForm">
+    <!-- {{diagnostic}} -->
+    <div class="form-group">
+        <label for="Serial">Serial</label>
+        <br>
+        <input type="text" class="form-control" id="Serial"
+                required
+                [(ngModel)]="model.Serial" name="Serial">
+    </div>
+    <div class="form-group">
+        <label for="Maker">Maker</label>
+        <br>
+        <input type="text" class="form-control" id="Maker"
+                required
+                [(ngModel)]="model.Maker" name="Maker">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="Grade">Grade</label>
+        <br>
+        <input type="text" class="form-control" id="Grade"
+                required
+                [(ngModel)]="model.Grade" name="Grade">
+    </div>
+    <div class="form-group">
+        <label for="Machine_Type">Machine Type</label>
+        <br>
+        <input type="text" class="form-control" id="Machine_Type"
+                required
+                [(ngModel)]="model.Machine_Type" name="Machine_Type">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="Screw_Diameter">Screw Diameter</label>
+        <br>
+        <input type="text" class="form-control" id="Screw_Diameter"
+                required
+                [(ngModel)]="model.Screw_Diameter" name="Screw_Diameter">
+    </div>
+    <div class="form-group">
+        <label for="Injection_Pressure">Injection Pressure</label>
+        <br>
+        <input type="text" class="form-control" id="Injection_Pressure"
+                required
+                [(ngModel)]="model.Injection_Pressure" name="Injection_Pressure">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="Screw_Stroke">Screw Stroke</label>
+        <br>
+        <input type="text" class="form-control" id="Screw_Stroke"
+                required
+                [(ngModel)]="model.Screw_Stroke" name="Screw_Stroke">
+    </div>
+    <div class="form-group">
+        <label for="Injection_Rate">Injection Rate</label>
+        <br>
+        <input type="text" class="form-control" id="Injection_Rate"
+                required
+                [(ngModel)]="model.Injection_Rate" name="Injection_Rate">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="Clamping_Force">Clamping Force</label>
+        <br>
+        <input type="text" class="form-control" id="Clamping_Force"
+                required
+                [(ngModel)]="model.Clamping_Force" name="Clamping_Force">
+    </div>
+    <div class="form-group">
+        <label for="Shot_Weight">Shot Weight</label>
+        <br>
+        <input type="text" class="form-control" id="Shot_Weight"
+                required
+                [(ngModel)]="model.Shot_Weight" name="Shot_Weight">
+    </div>
+    <br>
+    <img [src]="model.Picture" *ngIf="model.Picture" width="50%" (click)="selectimg.click()"/>
+    <input type="file" class="form-control" [style.display]="model.Picture? 'none':'block'"(change)="selectFile($event)" #selectimg>
+    <!-- <input type="file" class="form-control" [(ngModel)]="model.Picture" observeFiles> -->
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="!IMMForm.form.valid">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h3>You submitted the following:</h3>
+  {{model | json }}
+  <div class="row" *ngFor="let item of model | keyvalue">
+    <div class="col-xs-3">{{item.key}}</div>
+    <div class="col-xs-9">{{item.value}}</div>
+    <br>
+  </div>
+  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
+
+<!-- <div class="form-group">
+  <label for="alterEgo">Alter Ego</label>
+  <input type="text"  class="form-control" id="alterEgo"
+         [(ngModel)]="model.alterEgo" name="alterEgo">
+</div>
+
+<div class="form-group">
+  <label for="power">Hero Power</label>
+  <select class="form-control"  id="power"
+          required
+          [(ngModel)]="model.power" name="power">
+    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+  </select>
+</div> -->
